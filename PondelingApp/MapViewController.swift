@@ -41,7 +41,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         //テスト
         //変数宣言letは不変、varは可変
-        var a = 0
+        var a = 1
         
         
         
