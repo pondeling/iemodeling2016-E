@@ -7,6 +7,10 @@
 //  airis branch
 
 
+
+//  e155721 branch
+
+
 import UIKit
 //マップ
 import MapKit
