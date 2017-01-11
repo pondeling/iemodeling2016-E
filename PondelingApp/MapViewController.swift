@@ -35,9 +35,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         //テスト
         //変数宣言letは不変、varは可変
-//        var a = arc4random() % 10
         var a = 0
-        print(a)
         
         
         
@@ -72,18 +70,23 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             self.YLabel.text = "y=\(data.acceleration.y)"
             self.ZLabel.text = "z=\(data.acceleration.z)"
         
+          
             
+            
+            //良いか悪いかの判定
+            if(data.acceleration.x<0.1){
+                a=1
+            }else{
+                a=0
+            }
+            
+            if(a == 1){
+                self.hyoukalabel.text="もっと安全運転をしよう、、、"
+            }else{
+                self.hyoukalabel.text="いい感じ！"
+            }
             
         })
-        
-        
-        //テスト
-        if(a>5){
-            self.hyoukalabel.text="もっと安全運転をしよう、、、"
-        }else{
-            self.hyoukalabel.text="いい感じ！"
-        }
-        
         
         
     }
