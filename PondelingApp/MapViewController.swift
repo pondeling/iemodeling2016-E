@@ -6,7 +6,7 @@
 //  Copyright © 2017年 上原優里奈. All rights reserved.
 //
 
-//テスト
+
 
 import UIKit
 //マップ
