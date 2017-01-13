@@ -2,7 +2,7 @@
 //  main.swift
 //  modeling_vector_transform
 //
-//  Created by ゆうき はませ on 2016/12/21.
+//  Created by ゆうき はませ on 2017/01/13.
 //  Copyright © 2016年 hamase. All rights reserved.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 var presX : Float = 1;//get from accel code
 var presY : Float = 1;//get from accel code
 var presZ : Float = 0;//get from accel code
-var bX    : Float = 1;//get from accel code
-var bY    : Float = 1;//get from accel code
+var bX    : Float = 0;//get from accel code
+var bY    : Float = 0;//get from accel code
 var bZ    : Float = 1;//get from accel code
 
 var basisAbs : Float = 1;//must be calculated by "BasisAbsXYZ"
