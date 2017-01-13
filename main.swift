@@ -3,7 +3,7 @@
 //  modeling_vector_transform
 //
 //  Created by ゆうき はませ on 2017/01/13.
-//  Copyright © 2016年 hamase. All rights reserved.
+//  Copyright © 2017年 hamase. All rights reserved.
 //
 
 import Foundation
