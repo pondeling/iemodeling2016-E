@@ -4,8 +4,10 @@
 //
 //  Created by 上原優里奈 on 2017/01/05.
 //  Copyright © 2017年 上原優里奈. All rights reserved.
-//  airis branch
-//  takezyou branch
+
+//test comment
+//test comment
+
 
 
 import UIKit
@@ -38,7 +40,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         //テスト
         //変数宣言letは不変、varは可変
-        var a = 0
+        var a = 1
         
         
         

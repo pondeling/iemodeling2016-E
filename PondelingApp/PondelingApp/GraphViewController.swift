@@ -11,15 +11,13 @@ import UIKit
 
 class GraphViewController: UIViewController {
     
+//    @IBOutlet weak var graphView: GraphView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+//        graphView.setupPoints(points: [10,10,1,10,2,4,5,2,7,8,6,5,1])
+//    }
+
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+}
 }
