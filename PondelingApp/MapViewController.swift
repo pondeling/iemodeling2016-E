@@ -22,10 +22,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var testMapView: MKMapView!
     
     //加速度
-     @IBOutlet weak var XLabel: UILabel!
-     @IBOutlet weak var YLabel: UILabel!
-     @IBOutlet weak var ZLabel: UILabel!
-     @IBOutlet weak var SLabel: UILabel!
+    @IBOutlet weak var XLabel: UILabel!
+    @IBOutlet weak var YLabel: UILabel!
+    @IBOutlet weak var ZLabel: UILabel!
+    @IBOutlet weak var GLabel: UILabel!
+    @IBOutlet weak var HLabel: UILabel!
     @IBOutlet weak var hyoukalabel: UILabel!
     var myMotionManager: CMMotionManager!
     
@@ -124,7 +125,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 return abs
             }
             
-            self.SLabel.text = "X=\(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
+            self.GLabel.text = "X=\(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
+            
+            self.HLabel.text = "X=\(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
             
             //良いか悪いかの判定
             if(data.acceleration.x<0.1){
