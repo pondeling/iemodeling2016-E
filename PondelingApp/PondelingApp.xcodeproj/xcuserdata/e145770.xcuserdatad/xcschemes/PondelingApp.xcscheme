@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D356C591E00128200BC0628"
-               BuildableName = "acceleration.app"
-               BlueprintName = "acceleration"
-               ReferencedContainer = "container:acceleration.xcodeproj">
+               BlueprintIdentifier = "0AA9784D1E1DE261004A4E8D"
+               BuildableName = "PondelingApp.app"
+               BlueprintName = "PondelingApp"
+               ReferencedContainer = "container:PondelingApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +32,30 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D356C6D1E00128300BC0628"
-               BuildableName = "accelerationTests.xctest"
-               BlueprintName = "accelerationTests"
-               ReferencedContainer = "container:acceleration.xcodeproj">
+               BlueprintIdentifier = "0AA978611E1DE261004A4E8D"
+               BuildableName = "PondelingAppTests.xctest"
+               BlueprintName = "PondelingAppTests"
+               ReferencedContainer = "container:PondelingApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D356C781E00128300BC0628"
-               BuildableName = "accelerationUITests.xctest"
-               BlueprintName = "accelerationUITests"
-               ReferencedContainer = "container:acceleration.xcodeproj">
+               BlueprintIdentifier = "0AA9786C1E1DE261004A4E8D"
+               BuildableName = "PondelingAppUITests.xctest"
+               BlueprintName = "PondelingAppUITests"
+               ReferencedContainer = "container:PondelingApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6D356C591E00128200BC0628"
-            BuildableName = "acceleration.app"
-            BlueprintName = "acceleration"
-            ReferencedContainer = "container:acceleration.xcodeproj">
+            BlueprintIdentifier = "0AA9784D1E1DE261004A4E8D"
+            BuildableName = "PondelingApp.app"
+            BlueprintName = "PondelingApp"
+            ReferencedContainer = "container:PondelingApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,10 +75,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6D356C591E00128200BC0628"
-            BuildableName = "acceleration.app"
-            BlueprintName = "acceleration"
-            ReferencedContainer = "container:acceleration.xcodeproj">
+            BlueprintIdentifier = "0AA9784D1E1DE261004A4E8D"
+            BuildableName = "PondelingApp.app"
+            BlueprintName = "PondelingApp"
+            ReferencedContainer = "container:PondelingApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,10 +94,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6D356C591E00128200BC0628"
-            BuildableName = "acceleration.app"
-            BlueprintName = "acceleration"
-            ReferencedContainer = "container:acceleration.xcodeproj">
+            BlueprintIdentifier = "0AA9784D1E1DE261004A4E8D"
+            BuildableName = "PondelingApp.app"
+            BlueprintName = "PondelingApp"
+            ReferencedContainer = "container:PondelingApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
