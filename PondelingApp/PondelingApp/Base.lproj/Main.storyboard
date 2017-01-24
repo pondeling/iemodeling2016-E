@@ -81,12 +81,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jYy-uO-vaV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jYy-uO-vaV">
                                 <rect key="frame" x="0.0" y="144" width="375" height="447"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="KrL-7u-MfR"/>
-                                    <constraint firstAttribute="height" constant="447" id="k2S-yc-MjU"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVx-V1-dVO">
                                 <rect key="frame" x="86" y="28" width="241" height="21"/>
@@ -109,13 +106,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DG8-j1-dJZ">
-                                <rect key="frame" x="86" y="86" width="241" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9V-z7-fTk">
                                 <rect key="frame" x="16" y="28" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,14 +121,16 @@
                                 <state key="normal" title="ストップ">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="stopButton:" destination="CLw-Jx-y4i" eventType="touchUpInside" id="CEH-F1-VTF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="XLabel" destination="oVx-V1-dVO" id="fce-G4-yWE"/>
-                        <outlet property="YLabel" destination="0dc-5k-pH4" id="ZFS-cV-WxX"/>
-                        <outlet property="ZLabel" destination="DG8-j1-dJZ" id="zDr-xP-bpU"/>
+                        <outlet property="GLabel" destination="oVx-V1-dVO" id="Cwf-3h-fe3"/>
+                        <outlet property="HLabel" destination="0dc-5k-pH4" id="Dq4-nk-KPc"/>
                         <outlet property="hyoukalabel" destination="Ig7-Lg-dGu" id="Ey4-nD-xpb"/>
                         <outlet property="testMapView" destination="jYy-uO-vaV" id="eZf-uq-tSo"/>
                     </connections>
@@ -231,7 +223,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DXF-he-fQd"/>
+        <segue reference="rwD-NM-KmL"/>
         <segue reference="R4x-55-zft"/>
     </inferredMetricsTieBreakers>
 </document>
