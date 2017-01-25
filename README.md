@@ -1,4 +1,2 @@
-3 
+3
 hoge
-
-add by Airi
