@@ -4,7 +4,9 @@
 //
 //  Created by 上原優里奈 on 2017/01/05.
 //  Copyright © 2017年 上原優里奈. All rights reserved.
-//
+
+//test comment
+//test comment
 
 
 
@@ -20,10 +22,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var testMapView: MKMapView!
     
     //加速度
-     @IBOutlet weak var XLabel: UILabel!
-     @IBOutlet weak var YLabel: UILabel!
-     @IBOutlet weak var ZLabel: UILabel!
+//    @IBOutlet weak var XLabel: UILabel!
+//    @IBOutlet weak var YLabel: UILabel!
+//    @IBOutlet weak var ZLabel: UILabel!
+    @IBOutlet weak var GLabel: UILabel!
+    @IBOutlet weak var HLabel: UILabel!
     @IBOutlet weak var hyoukalabel: UILabel!
+
+    //仮配列.名前変更可.値も仮で入れてます
+    //array2が値を入れる配列,arrayが２次元配列
+    var array = [[1,2]]
+    var array2 = [3,4]
+
+    
+    
+    
     var myMotionManager: CMMotionManager!
     
     
@@ -37,7 +50,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         //テスト
         //変数宣言letは不変、varは可変
-        var a = 0
+        var a = 1
         
         
         
@@ -68,12 +81,62 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             guard let data = accelerometerData else {
                 return
             }
-            self.XLabel.text = "x=\(data.acceleration.x)"
-            self.YLabel.text = "y=\(data.acceleration.y)"
-            self.ZLabel.text = "z=\(data.acceleration.z)"
+//            self.XLabel.text = "x=\(data.acceleration.x)"
+//            self.YLabel.text = "y=\(data.acceleration.y)"
+//            self.ZLabel.text = "z=\(data.acceleration.z)"
         
-          
+            //main.swift add
+            var presX : Float = Float(data.acceleration.x);//get from accel code
+            var presY : Float = Float(data.acceleration.y);//get from accel code
+            var presZ : Float = Float(data.acceleration.z);//get from accel code
+            var bX    : Float = 1;//get from accel code
+            var bY    : Float = 0;//get from accel code
+            var bZ    : Float = 0;//get from accel code
             
+            var basisAbs : Float = 1;//must be calculated by "BasisAbsXYZ"
+            
+            
+            func findPresentGravitationalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
+                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)//present accel abs
+                let presSubToBasis = presentSubToBasis(presentX: presentX, presentY: presentY, presentZ: presentZ, basisX: basisX, basisY: basisY, basisZ: basisZ)//present substruction to basis
+                let gravitationalVector = (presAbs*presAbs-presSubToBasis*presSubToBasis+basisAbs*basisAbs)/(2*basisAbs)//ここに関しては計算した
+                return gravitationalVector
+            }
+            
+            func findPresentHorizonalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
+                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
+                let gravVec = findPresentGravitationalVector(presentX: presX, presentY: presY, presentZ: presZ, basisX: bX, basisY: bY, basisZ: bZ)
+                let horizonalVector = sqrtf(presAbs*presAbs-gravVec*gravVec)
+                return horizonalVector
+            }
+            
+            func PresentAbsXYZ(presentX:Float,presentY:Float,presentZ:Float) -> (Float){
+                var abs : Float = 0
+                abs = presentX*presentX+presentY*presentY+presentZ*presentZ
+                abs = sqrtf(abs)
+                return abs
+            }
+            
+            func BasisAbsXYZ(basisX:Float,basisY:Float,basisZ:Float) -> (Float){
+                var abs : Float = 0
+                abs = basisX*basisX+basisY*basisY+basisZ*basisZ
+                abs = sqrtf(abs)
+                return abs
+            }
+            
+            func presentSubToBasis(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) -> (Float){
+                var abs : Float = 0;
+                let subX = presentX-basisX;
+                let subY = presentY-basisY;
+                let subZ = presentZ-basisZ;
+                abs = (subX*subX)+(subY*subY)+(subZ*subZ)
+                abs = sqrtf(abs)
+                return abs
+            }
+            
+            self.GLabel.text = "X=\(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
+            
+            self.HLabel.text = "X=\(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
             
             //良いか悪いかの判定
             if(data.acceleration.x<0.1){
@@ -113,6 +176,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
+    
+    
+    //ストップボタンを押した時の処理
+    @IBAction func stopButton(_ sender: Any) {
+        //２次元配列.array2が追加する配列
+        array.append(array2)
+        print(array)
+        
+        
+    }
+    
+    
+    
     
 }
 
