@@ -22,12 +22,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var testMapView: MKMapView!
     
     //加速度
-    @IBOutlet weak var XLabel: UILabel!
-    @IBOutlet weak var YLabel: UILabel!
-    @IBOutlet weak var ZLabel: UILabel!
+//    @IBOutlet weak var XLabel: UILabel!
+//    @IBOutlet weak var YLabel: UILabel!
+//    @IBOutlet weak var ZLabel: UILabel!
     @IBOutlet weak var GLabel: UILabel!
     @IBOutlet weak var HLabel: UILabel!
     @IBOutlet weak var hyoukalabel: UILabel!
+
+    //仮配列.名前変更可.値も仮で入れてます
+    //array2が値を入れる配列,arrayが２次元配列
+    var array = [[1,2]]
+    var array2 = [3,4]
+
+    
+    
+    
     var myMotionManager: CMMotionManager!
     
     
@@ -72,9 +81,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             guard let data = accelerometerData else {
                 return
             }
-            self.XLabel.text = "x=\(data.acceleration.x)"
-            self.YLabel.text = "y=\(data.acceleration.y)"
-            self.ZLabel.text = "z=\(data.acceleration.z)"
+//            self.XLabel.text = "x=\(data.acceleration.x)"
+//            self.YLabel.text = "y=\(data.acceleration.y)"
+//            self.ZLabel.text = "z=\(data.acceleration.z)"
         
             //main.swift add
             var presX : Float = Float(data.acceleration.x);//get from accel code
@@ -167,6 +176,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
+    
+    
+    //ストップボタンを押した時の処理
+    @IBAction func stopButton(_ sender: Any) {
+        //２次元配列.array2が追加する配列
+        array.append(array2)
+        print(array)
+        
+        
+    }
+    
+    
+    
     
 }
 
