@@ -142,7 +142,7 @@
         <!--Graph View Controller-->
         <scene sceneID="QCM-sA-Uba">
             <objects>
-                <viewController id="sIB-mV-kxN" customClass="GraphViewController" customModule="PondelingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="graph" id="sIB-mV-kxN" customClass="GraphViewController" customModule="PondelingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s2W-cI-t4d"/>
                         <viewControllerLayoutGuide type="bottom" id="5fC-CT-k2e"/>
@@ -223,7 +223,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rwD-NM-KmL"/>
+        <segue reference="DXF-he-fQd"/>
         <segue reference="R4x-55-zft"/>
     </inferredMetricsTieBreakers>
 </document>

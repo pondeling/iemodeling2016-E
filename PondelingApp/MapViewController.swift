@@ -178,7 +178,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     //ストップボタンを押した時の処理
     @IBAction func stopButton(_ sender: Any) {
-
+        let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "graph" ) 
+        self.present( targetViewController, animated: true, completion: nil)
         
         
     }
