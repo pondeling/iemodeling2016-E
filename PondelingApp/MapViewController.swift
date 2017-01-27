@@ -29,10 +29,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var HLabel: UILabel!
     @IBOutlet weak var hyoukalabel: UILabel!
 
-    //仮配列.名前変更可.値も仮で入れてます
-    //array2が値を入れる配列,arrayが２次元配列
-    var array = [[1,2]]
-    var array2 = [3,4]
+
 
     
     
@@ -138,6 +135,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             
             self.HLabel.text = "X=\(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
             
+            
             //良いか悪いかの判定
             if(data.acceleration.x<0.1){
                 a=1
@@ -180,9 +178,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     //ストップボタンを押した時の処理
     @IBAction func stopButton(_ sender: Any) {
-        //２次元配列.array2が追加する配列
-        array.append(array2)
-        print(array)
+
         
         
     }
