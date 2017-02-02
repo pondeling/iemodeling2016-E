@@ -30,7 +30,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var hyoukalabel: UILabel!
     var myMotionManager: CMMotionManager!
     
-    
+    //加速度，躍度を入れる配列
+    var lastG : Float = 0;
+    var lastH : Float = 0;
+    var YG : Float = 0;
+    var YH : Float = 0;
+    var G : [Float] = [];
+    var H : [Float] = [];
+    var yankG : [Float] = [];
+    var yankH : [Float] = [];
+
     
     //マップ
     var testManager:CLLocationManager = CLLocationManager()
@@ -75,6 +84,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             self.XLabel.text = "x=\(data.acceleration.x)"
             self.YLabel.text = "y=\(data.acceleration.y)"
             self.ZLabel.text = "z=\(data.acceleration.z)"
+            
+           
         
             //main.swift add
             var presX : Float = Float(data.acceleration.x);//get from accel code
@@ -125,9 +136,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 return abs
             }
             
-            self.GLabel.text = "X=\(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
+            //垂直方向の値を配列に入れる
+            self.G.append(Float(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ)))
             
-            self.HLabel.text = "X=\(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ))"
+            //水平方向の値を配列に入れる
+            self.H.append(Float(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ)))
+            
+            
+            //垂直方向の躍度の躍度の計算
+            self.YG = self.lastG - findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+            
+            self.lastG = findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+            
+            //垂直方向の躍度の値を配列に入れる
+            self.yankG.append(self.YG)
+            
+            
+            //水平方向の躍度の計算
+            self.YH = self.lastH - findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+            
+            self.lastH = findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+            
+            //水平方向の躍度の値を配列に入れている
+            self.yankH.append(self.YG)
+
             
             //良いか悪いかの判定
             if(data.acceleration.x<0.1){
