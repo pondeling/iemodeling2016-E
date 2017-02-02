@@ -16,7 +16,7 @@
 		0AA978721E1DE261004A4E8D /* PondelingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA978711E1DE261004A4E8D /* PondelingAppUITests.swift */; };
 		0AA978821E1DE73E004A4E8D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA978811E1DE73E004A4E8D /* MapViewController.swift */; };
 		0AA978841E1DE775004A4E8D /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA978831E1DE775004A4E8D /* GraphViewController.swift */; };
-		0AE58D241E42D03900436B32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AE58D221E42D03900436B32 /* Main.storyboard */; };
+		3D437B501E39170C0010CA44 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D437B4F1E39170C0010CA44 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,8 @@
 		0AA978731E1DE261004A4E8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AA978811E1DE73E004A4E8D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
 		0AA978831E1DE775004A4E8D /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
-		0AE58D231E42D03900436B32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+
+		3D437B4F1E39170C0010CA44 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,9 +114,9 @@
 		0AA978501E1DE261004A4E8D /* PondelingApp */ = {
 			isa = PBXGroup;
 			children = (
+				3D437B4E1E3916EF0010CA44 /* Graph */,
 				0AA978511E1DE261004A4E8D /* AppDelegate.swift */,
 				0AA978811E1DE73E004A4E8D /* MapViewController.swift */,
-				0AA978831E1DE775004A4E8D /* GraphViewController.swift */,
 				0AA978531E1DE261004A4E8D /* ViewController.swift */,
 				0AE58D221E42D03900436B32 /* Main.storyboard */,
 				0AA978581E1DE261004A4E8D /* Assets.xcassets */,
@@ -141,6 +142,15 @@
 				0AA978731E1DE261004A4E8D /* Info.plist */,
 			);
 			path = PondelingAppUITests;
+			sourceTree = "<group>";
+		};
+		3D437B4E1E3916EF0010CA44 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				3D437B4F1E39170C0010CA44 /* GraphView.swift */,
+				0AA978831E1DE775004A4E8D /* GraphViewController.swift */,
+			);
+			name = Graph;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D437B501E39170C0010CA44 /* GraphView.swift in Sources */,
 				0AA978841E1DE775004A4E8D /* GraphViewController.swift in Sources */,
 				0AA978821E1DE73E004A4E8D /* MapViewController.swift in Sources */,
 				0AA978541E1DE261004A4E8D /* ViewController.swift in Sources */,
