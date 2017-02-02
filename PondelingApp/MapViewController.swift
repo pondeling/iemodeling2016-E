@@ -30,7 +30,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var hyoukalabel: UILabel!
 
 
-
+    //仮配列
+    var array = ["0.1","4.3","5.1","0.3","0.3","1.2","1.9","7.1","9.9"]
     
     
     
@@ -178,6 +179,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     //ストップボタンを押した時の処理
     @IBAction func stopButton(_ sender: Any) {
+        //userDefaults
+        let userDefaults = UserDefaults.standard
+        //配列保存
+        userDefaults.set(array, forKey: "Key")
+        userDefaults.synchronize()
+        
+        
+        
+        //画面遷移
         let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "graph" ) 
         self.present( targetViewController, animated: true, completion: nil)
         

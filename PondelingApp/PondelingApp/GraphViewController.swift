@@ -17,7 +17,11 @@ class GraphViewController: UIViewController {
         super.viewDidLoad()
 //        graphView.setupPoints(points: [10,10,1,10,2,4,5,2,7,8,6,5,1])
 //    }
+        
+        let userDefaults = UserDefaults.standard
+        let array = userDefaults.object(forKey: "Key")
 
+        print(array)
     
 }
 }
