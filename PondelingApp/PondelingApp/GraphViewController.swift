@@ -15,6 +15,7 @@ class GraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         graphView.setupPoints(points: [10,10,1,10,30,50])
     }
 }
