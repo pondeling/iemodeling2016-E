@@ -15,6 +15,15 @@ class GraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        //UserDefaults
+        let userDefaults = UserDefaults.standard
+        let array = userDefaults.object(forKey: "Key")
+        print(array)
+        
+        
         graphView.setupPoints(points: [10,10,1,10,30,50])
+        
+
     }
 }

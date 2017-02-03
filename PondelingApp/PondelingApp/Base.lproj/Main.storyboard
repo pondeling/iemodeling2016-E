@@ -47,7 +47,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5Pa-8B-4WP" kind="modal" id="0hb-T3-LLR"/>
+                                    <segue destination="5Pa-8B-4WP" kind="modal" id="uMT-fJ-KFK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bo-64-ceT">
@@ -142,7 +142,7 @@
         <!--Graph View Controller-->
         <scene sceneID="QCM-sA-Uba">
             <objects>
-                <viewController id="sIB-mV-kxN" customClass="GraphViewController" customModule="PondelingApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="graph" id="sIB-mV-kxN" customClass="GraphViewController" customModule="PondelingApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s2W-cI-t4d"/>
                         <viewControllerLayoutGuide type="bottom" id="5fC-CT-k2e"/>
@@ -234,7 +234,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rwD-NM-KmL"/>
-        <segue reference="R4x-55-zft"/>
+        <segue reference="DXF-he-fQd"/>
+        <segue reference="uMT-fJ-KFK"/>
     </inferredMetricsTieBreakers>
 </document>
