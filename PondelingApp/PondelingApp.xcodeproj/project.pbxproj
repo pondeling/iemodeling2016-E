@@ -211,7 +211,7 @@
 				TargetAttributes = {
 					0AA9784D1E1DE261004A4E8D = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZDQH45PUEV;
+						DevelopmentTeam = M5BD3LVCYK;
 						ProvisioningStyle = Automatic;
 					};
 					0AA978611E1DE261004A4E8D = {
@@ -431,13 +431,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZDQH45PUEV;
+				DEVELOPMENT_TEAM = M5BD3LVCYK;
 				INFOPLIST_FILE = PondelingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-.5.PondelingApp";
+				PRODUCT_BUNDLE_IDENTIFIER = PondelingApptest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -445,13 +445,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZDQH45PUEV;
+				DEVELOPMENT_TEAM = M5BD3LVCYK;
 				INFOPLIST_FILE = PondelingApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-.5.PondelingApp";
+				PRODUCT_BUNDLE_IDENTIFIER = PondelingApptest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
