@@ -39,6 +39,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var yankG : [Float] = [];
     var yankH : [Float] = [];
     
+    var x : [Float] = [];
+    var y : [Float] = [];
+    var z : [Float] = [];
+    var averageX: Float = 0
+    var averageY: Float = 0
+    var averageZ: Float = 0
+    
     
     
     var myMotionManager: CMMotionManager!
@@ -56,7 +63,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         //変数宣言letは不変、varは可変
         var a = 1
         
-        
+        var count = 0
         
         //デリゲート先を自分に設定する。
         testManager.delegate = self
@@ -85,6 +92,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             guard let data = accelerometerData else {
                 return
             }
+            
+            
+            if (count < 21){
+            self.x.append(Float(data.acceleration.x))
+            self.y.append(Float(data.acceleration.y))
+            self.z.append(Float(data.acceleration.z))
+            
+            if self.x.count == 20{
+                
+                for i in 10...19{
+                    self.averageX = self.averageX + self.x[i]
+                    self.averageY = self.averageY + self.y[i]
+                    self.averageZ = self.averageZ + self.z[i]
+                }
+                self.averageX = self.averageX/10
+                self.averageY = self.averageY/10
+                self.averageZ = self.averageZ/10
+            }
+            }
+            
+            
+            
+            print(count)
+            
+            if(count > 20){
+            
             //            self.XLabel.text = "x=\(data.acceleration.x)"
             //            self.YLabel.text = "y=\(data.acceleration.y)"
             //            self.ZLabel.text = "z=\(data.acceleration.z)"
@@ -93,9 +126,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             var presX : Float = Float(data.acceleration.x);//get from accel code
             var presY : Float = Float(data.acceleration.y);//get from accel code
             var presZ : Float = Float(data.acceleration.z);//get from accel code
-            var bX    : Float = 1;//get from accel code
-            var bY    : Float = 0;//get from accel code
-            var bZ    : Float = 0;//get from accel code
+            var bX    : Float = Float(self.averageX);//get from accel code
+            var bY    : Float = Float(self.averageY);//get from accel code
+            var bZ    : Float = Float(self.averageZ);//get from accel code
             
             var basisAbs : Float = 1;//must be calculated by "BasisAbsXYZ"
             
@@ -108,9 +141,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             func findPresentHorizonalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
-                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
                 let gravVec = findPresentGravitationalVector(presentX: presX, presentY: presY, presentZ: presZ, basisX: bX, basisY: bY, basisZ: bZ)
-                let horizonalVector = sqrtf(presAbs*presAbs-gravVec*gravVec)
+                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
+                let horizonalVector = sqrtf(abs(presAbs*presAbs-gravVec*gravVec))
                 return horizonalVector
             }
             
@@ -181,8 +214,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             }else{
                 self.hyoukalabel.text="いい感じ！"
             }
-            
-        })
+            }
+            count = count + 1
+        }
+            )
         
         
     }
@@ -216,10 +251,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         
     }
-    
-    
-    
-    
 }
 
 
