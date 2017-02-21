@@ -11,19 +11,13 @@ import UIKit
 
 class GraphViewController: UIViewController {
     
+    var i: [Float] = []
+    
     @IBOutlet weak var graphView: GraphView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //UserDefaults
-        let userDefaults = UserDefaults.standard
-        let array = userDefaults.object(forKey: "Key")
-        print(array)
         
-        
-        graphView.setupPoints(points: [10,10,1,10,30,50])
-        
-
+        graphView.setupPoints(points: i)
     }
 }

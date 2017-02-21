@@ -95,21 +95,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             
             
             if (count < 21){
-            self.x.append(Float(data.acceleration.x))
-            self.y.append(Float(data.acceleration.y))
-            self.z.append(Float(data.acceleration.z))
-            
-            if self.x.count == 20{
+                self.x.append(Float(data.acceleration.x))
+                self.y.append(Float(data.acceleration.y))
+                self.z.append(Float(data.acceleration.z))
                 
-                for i in 10...19{
-                    self.averageX = self.averageX + self.x[i]
-                    self.averageY = self.averageY + self.y[i]
-                    self.averageZ = self.averageZ + self.z[i]
+                if self.x.count == 20{
+                    
+                    for i in 10...19{
+                        self.averageX = self.averageX + self.x[i]
+                        self.averageY = self.averageY + self.y[i]
+                        self.averageZ = self.averageZ + self.z[i]
+                    }
+                    self.averageX = self.averageX/10
+                    self.averageY = self.averageY/10
+                    self.averageZ = self.averageZ/10
                 }
-                self.averageX = self.averageX/10
-                self.averageY = self.averageY/10
-                self.averageZ = self.averageZ/10
-            }
             }
             
             
@@ -117,107 +117,107 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             print(count)
             
             if(count > 20){
-            
-            //            self.XLabel.text = "x=\(data.acceleration.x)"
-            //            self.YLabel.text = "y=\(data.acceleration.y)"
-            //            self.ZLabel.text = "z=\(data.acceleration.z)"
-            
-            //main.swift add
-            var presX : Float = Float(data.acceleration.x);//get from accel code
-            var presY : Float = Float(data.acceleration.y);//get from accel code
-            var presZ : Float = Float(data.acceleration.z);//get from accel code
-            var bX    : Float = Float(self.averageX);//get from accel code
-            var bY    : Float = Float(self.averageY);//get from accel code
-            var bZ    : Float = Float(self.averageZ);//get from accel code
-            
-            var basisAbs : Float = 1;//must be calculated by "BasisAbsXYZ"
-            
-            
-            func findPresentGravitationalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
-                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)//present accel abs
-                let presSubToBasis = presentSubToBasis(presentX: presentX, presentY: presentY, presentZ: presentZ, basisX: basisX, basisY: basisY, basisZ: basisZ)//present substruction to basis
-                let gravitationalVector = (presAbs*presAbs-presSubToBasis*presSubToBasis+basisAbs*basisAbs)/(2*basisAbs)//ここに関しては計算した
-                return gravitationalVector
-            }
-            
-            func findPresentHorizonalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
-                let gravVec = findPresentGravitationalVector(presentX: presX, presentY: presY, presentZ: presZ, basisX: bX, basisY: bY, basisZ: bZ)
-                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
-                let horizonalVector = sqrtf(abs(presAbs*presAbs-gravVec*gravVec))
-                return horizonalVector
-            }
-            
-            func PresentAbsXYZ(presentX:Float,presentY:Float,presentZ:Float) -> (Float){
-                var abs : Float = 0
-                abs = presentX*presentX+presentY*presentY+presentZ*presentZ
-                abs = sqrtf(abs)
-                return abs
-            }
-            
-            func BasisAbsXYZ(basisX:Float,basisY:Float,basisZ:Float) -> (Float){
-                var abs : Float = 0
-                abs = basisX*basisX+basisY*basisY+basisZ*basisZ
-                abs = sqrtf(abs)
-                return abs
-            }
-            
-            func presentSubToBasis(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) -> (Float){
-                var abs : Float = 0;
-                let subX = presentX-basisX;
-                let subY = presentY-basisY;
-                let subZ = presentZ-basisZ;
-                abs = (subX*subX)+(subY*subY)+(subZ*subZ)
-                abs = sqrtf(abs)
-                return abs
-            }
-            
-            //垂直方向の値を配列に入れる
-            self.G.append(Float(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ)))
-            
-            //水平方向の値を配列に入れる
-            self.H.append(Float(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ)))
-            
-            
-            //垂直方向の躍度の躍度の計算
-            self.YG = self.lastG - findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
-            
-            self.lastG = findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
-            
-            //垂直方向の躍度の値を配列に入れる
-            self.yankG.append(self.YG)
-            
-            
-            //水平方向の躍度の計算
-            self.YH = self.lastH - findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
-            
-            self.lastH = findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
-            
-            //水平方向の躍度の値を配列に入れている
-            self.yankH.append(self.YG)
-            
-            self.GLabel.text = "G=\(self.YG)"
-            
-            self.HLabel.text = "H=\(self.YH)"
-            
-            
-            
-            
-            //良いか悪いかの判定
-            if(data.acceleration.x<0.1){
-                a=1
-            }else{
-                a=0
-            }
-            
-            if(a == 1){
-                self.hyoukalabel.text="もっと安全運転をしよう、、、"
-            }else{
-                self.hyoukalabel.text="いい感じ！"
-            }
+                
+                //            self.XLabel.text = "x=\(data.acceleration.x)"
+                //            self.YLabel.text = "y=\(data.acceleration.y)"
+                //            self.ZLabel.text = "z=\(data.acceleration.z)"
+                
+                //main.swift add
+                var presX : Float = Float(data.acceleration.x);//get from accel code
+                var presY : Float = Float(data.acceleration.y);//get from accel code
+                var presZ : Float = Float(data.acceleration.z);//get from accel code
+                var bX    : Float = Float(self.averageX);//get from accel code
+                var bY    : Float = Float(self.averageY);//get from accel code
+                var bZ    : Float = Float(self.averageZ);//get from accel code
+                
+                var basisAbs : Float = 1;//must be calculated by "BasisAbsXYZ"
+                
+                
+                func findPresentGravitationalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
+                    let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)//present accel abs
+                    let presSubToBasis = presentSubToBasis(presentX: presentX, presentY: presentY, presentZ: presentZ, basisX: basisX, basisY: basisY, basisZ: basisZ)//present substruction to basis
+                    let gravitationalVector = (presAbs*presAbs-presSubToBasis*presSubToBasis+basisAbs*basisAbs)/(2*basisAbs)//ここに関しては計算した
+                    return gravitationalVector
+                }
+                
+                func findPresentHorizonalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
+                    let gravVec = findPresentGravitationalVector(presentX: presX, presentY: presY, presentZ: presZ, basisX: bX, basisY: bY, basisZ: bZ)
+                    let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
+                    let horizonalVector = sqrtf(abs(presAbs*presAbs-gravVec*gravVec))
+                    return horizonalVector
+                }
+                
+                func PresentAbsXYZ(presentX:Float,presentY:Float,presentZ:Float) -> (Float){
+                    var abs : Float = 0
+                    abs = presentX*presentX+presentY*presentY+presentZ*presentZ
+                    abs = sqrtf(abs)
+                    return abs
+                }
+                
+                func BasisAbsXYZ(basisX:Float,basisY:Float,basisZ:Float) -> (Float){
+                    var abs : Float = 0
+                    abs = basisX*basisX+basisY*basisY+basisZ*basisZ
+                    abs = sqrtf(abs)
+                    return abs
+                }
+                
+                func presentSubToBasis(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) -> (Float){
+                    var abs : Float = 0;
+                    let subX = presentX-basisX;
+                    let subY = presentY-basisY;
+                    let subZ = presentZ-basisZ;
+                    abs = (subX*subX)+(subY*subY)+(subZ*subZ)
+                    abs = sqrtf(abs)
+                    return abs
+                }
+                
+                //垂直方向の値を配列に入れる
+                self.G.append(Float(findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ)))
+                
+                //水平方向の値を配列に入れる
+                self.H.append(Float(findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ)))
+                
+                
+                //垂直方向の躍度の躍度の計算
+                self.YG = self.lastG - findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+                
+                self.lastG = findPresentGravitationalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+                
+                //垂直方向の躍度の値を配列に入れる
+                self.yankG.append(self.YG)
+                
+                
+                //水平方向の躍度の計算
+                self.YH = self.lastH - findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+                
+                self.lastH = findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
+                
+                //水平方向の躍度の値を配列に入れている
+                self.yankH.append(self.YG)
+                
+                self.GLabel.text = "G=\(self.YG)"
+                
+                self.HLabel.text = "H=\(self.YH)"
+                
+                
+                
+                
+                //良いか悪いかの判定
+                if(data.acceleration.x<0.1){
+                    a=1
+                }else{
+                    a=0
+                }
+                
+                if(a == 1){
+                    self.hyoukalabel.text="もっと安全運転をしよう、、、"
+                }else{
+                    self.hyoukalabel.text="いい感じ！"
+                }
             }
             count = count + 1
         }
-            )
+        )
         
         
     }
@@ -243,13 +243,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         print(error)
     }
     
+
+       @IBAction func stopButton(_ sender: Any) {
+        performSegue(withIdentifier: "graph",sender: nil)
+    }
     
-    //ストップボタンを押した時の処理
-    @IBAction func stopButton(_ sender: Any) {
-        let targetViewController = self.storyboard!.instantiateViewController( withIdentifier: "graph" )
-        self.present( targetViewController, animated: true, completion: nil)
-        
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "graph") {
+            
+            let send: GraphViewController = (segue.destination as? GraphViewController)!
+            // 値の転送
+            send.i = self.yankH
+        }
     }
 }
 
