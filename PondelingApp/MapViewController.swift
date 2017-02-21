@@ -141,9 +141,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             func findPresentHorizonalVector(presentX:Float,presentY:Float,presentZ:Float,basisX:Float,basisY:Float,basisZ:Float) ->(Float){
-                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
                 let gravVec = findPresentGravitationalVector(presentX: presX, presentY: presY, presentZ: presZ, basisX: bX, basisY: bY, basisZ: bZ)
-                let horizonalVector = sqrtf(presAbs*presAbs-gravVec*gravVec)
+                let presAbs = PresentAbsXYZ(presentX: presX, presentY: presY, presentZ: presZ)
+                let horizonalVector = sqrtf(abs(presAbs*presAbs-gravVec*gravVec))
                 return horizonalVector
             }
             
