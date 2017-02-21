@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GraphTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc2-bx-8Tc">
+                                <rect key="frame" x="172" y="318" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go"/>
+                                <connections>
+                                    <action selector="Go:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bi9-MO-b8v"/>
+                                    <segue destination="hGj-0D-pLf" kind="popoverPresentation" identifier="graph" popoverAnchorView="hc2-bx-8Tc" id="dva-xK-wZS">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller2-->
+        <scene sceneID="UiD-AR-O3P">
+            <objects>
+                <viewController id="hGj-0D-pLf" customClass="ViewController2" customModule="GraphTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bbr-Bh-kdT"/>
+                        <viewControllerLayoutGuide type="bottom" id="bvw-VL-r0E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PVo-Te-bhx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JlV-PC-wAF" customClass="GraphView" customModule="GraphTest" customModuleProvider="target">
+                                <rect key="frame" x="16" y="161" width="343" height="345"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.54901960780000003" green="0.80000000000000004" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.43921568630000002" green="0.51372549020000002" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bvw-VL-r0E" firstAttribute="top" secondItem="JlV-PC-wAF" secondAttribute="bottom" constant="161" id="AVR-dH-muC"/>
+                            <constraint firstItem="JlV-PC-wAF" firstAttribute="centerX" secondItem="PVo-Te-bhx" secondAttribute="centerX" id="Say-8q-zzp"/>
+                            <constraint firstItem="JlV-PC-wAF" firstAttribute="leading" secondItem="PVo-Te-bhx" secondAttribute="leading" constant="16" id="Sbc-uC-Ddq"/>
+                            <constraint firstItem="JlV-PC-wAF" firstAttribute="centerY" secondItem="PVo-Te-bhx" secondAttribute="centerY" id="bkk-Gm-N7I"/>
+                            <constraint firstAttribute="trailing" secondItem="JlV-PC-wAF" secondAttribute="trailing" constant="16" id="yDy-SC-Doo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="graphView" destination="JlV-PC-wAF" id="fJA-Go-yQz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2jM-1l-GDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071" y="37"/>
+        </scene>
+    </scenes>
+</document>
