@@ -104,7 +104,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 for i in 10...19{
                     self.averageX = self.averageX + self.x[i]
                     self.averageY = self.averageY + self.y[i]
-                    self.averageZ = self.averageX + self.z[i]
+                    self.averageZ = self.averageZ + self.z[i]
                 }
                 self.averageX = self.averageX/10
                 self.averageY = self.averageY/10
