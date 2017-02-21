@@ -15,10 +15,10 @@ import UIKit
     @IBInspectable var endColor: UIColor = UIColor.green
     
     // ダミーデータ
-    var graphPoints:[Int] = []
+    var graphPoints:[Float] = []
     
     // プロットデータ
-    func setupPoints(points: [Int]) {
+    func setupPoints(points: [Float]) {
         graphPoints = points
         self.setNeedsDisplay()
     }
@@ -50,7 +50,7 @@ import UIKit
         
         // X座標の計算
         let margin:CGFloat = 20.0
-        let columnXPoint = { (column:Int) -> CGFloat in
+        let columnXPoint = { (column:Float) -> CGFloat in
             //Calculate gap between points
             let spacer = (width - margin*2 - 4) /
                 CGFloat((self.graphPoints.count - 1))
@@ -64,7 +64,7 @@ import UIKit
         let bottomBorder:CGFloat = 50
         let graphHeight = height - topBorder - bottomBorder
         let maxValue = graphPoints.max() ?? 1
-        let columnYPoint = { (graphPoint:Int) -> CGFloat in
+        let columnYPoint = { (graphPoint:Float) -> CGFloat in
             
             var y:CGFloat = CGFloat(graphPoint) / CGFloat(maxValue) * graphHeight
             y = graphHeight + topBorder - y
@@ -81,7 +81,7 @@ import UIKit
                                    y:columnYPoint(graphPoints[0])))
         
         for i in 1..<graphPoints.count {
-            let nextPoint = CGPoint(x:columnXPoint(i),
+            let nextPoint = CGPoint(x:columnXPoint(Float(i)),
                                     y:columnYPoint(graphPoints[i]))
             graphPath.addLine(to: nextPoint)
         }
@@ -103,7 +103,7 @@ import UIKit
         
         // プロットの描画
         for i in 0..<graphPoints.count {
-            var point = CGPoint(x:columnXPoint(i), y:columnYPoint(graphPoints[i]))
+            var point = CGPoint(x:columnXPoint(Float(i)), y:columnYPoint(graphPoints[i]))
             point.x -= 5.0/2
             point.y -= 5.0/2
             
