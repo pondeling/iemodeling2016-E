@@ -46,8 +46,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var averageY: Float = 0
     var averageZ: Float = 0
     
-    
-    
+    var count = 0
+
     var myMotionManager: CMMotionManager!
     
     
@@ -63,7 +63,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         //変数宣言letは不変、varは可変
         var a = 1
         
-        var count = 0
         
         //デリゲート先を自分に設定する。
         testManager.delegate = self
@@ -81,7 +80,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         myMotionManager = CMMotionManager()
         
         // 更新周期を設定.
-        myMotionManager.accelerometerUpdateInterval = 0.1
+        myMotionManager.accelerometerUpdateInterval = 0.2
         
         // 加速度の取得を開始.
         myMotionManager.startAccelerometerUpdates(to: OperationQueue.main, withHandler: {(accelerometerData, error) in
@@ -93,12 +92,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             
+            self.x.append(Float(data.acceleration.x))
+            self.y.append(Float(data.acceleration.y))
+            self.z.append(Float(data.acceleration.z))
+
             
-            if (count < 21){
-                self.x.append(Float(data.acceleration.x))
-                self.y.append(Float(data.acceleration.y))
-                self.z.append(Float(data.acceleration.z))
-                
+            if (self.count < 21){
                 if self.x.count == 20{
                     
                     for i in 10...19{
@@ -113,19 +112,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             
-            
-            print(count)
-            
-            if(count > 20){
+            if(self.count > 40){
                 
                 //            self.XLabel.text = "x=\(data.acceleration.x)"
                 //            self.YLabel.text = "y=\(data.acceleration.y)"
                 //            self.ZLabel.text = "z=\(data.acceleration.z)"
                 
                 //main.swift add
-                var presX : Float = Float(data.acceleration.x);//get from accel code
-                var presY : Float = Float(data.acceleration.y);//get from accel code
-                var presZ : Float = Float(data.acceleration.z);//get from accel code
+                var presX : Float = Float(self.x[self.count]);//get from accel code
+                var presY : Float = Float(self.y[self.count]);//get from accel code
+                var presZ : Float = Float(self.z[self.count]);//get from accel code
                 var bX    : Float = Float(self.averageX);//get from accel code
                 var bY    : Float = Float(self.averageY);//get from accel code
                 var bZ    : Float = Float(self.averageZ);//get from accel code
@@ -193,35 +189,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
                 self.lastH = findPresentHorizonalVector(presentX: presX,presentY: presY,presentZ: presZ,basisX: bX,basisY: bY,basisZ: bZ);
                 
                 //水平方向の躍度の値を配列に入れている
-                self.yankH.append(self.YG)
+                var graph = (self.YH/0.1) * (self.YH/0.1)
+                self.yankH.append(graph)
                 
                 self.GLabel.text = "G=\(self.YG)"
                 
                 self.HLabel.text = "H=\(self.YH)"
-                
-                
-                
-                
+
+
                 //良いか悪いかの判定
-                if(data.acceleration.x<0.1){
-                    a=1
-                }else{
-                    a=0
-                }
-                
-                if(a == 1){
+                if(0.12<self.YH){
+                    self.hyoukalabel.text="乗り心地悪っ！！！！！"
+                    self.view.backgroundColor = UIColor.red
+                } else if(0.07 <= self.YH) {
                     self.hyoukalabel.text="もっと安全運転をしよう、、、"
-                }else{
-                    self.hyoukalabel.text="いい感じ！"
+                    self.view.backgroundColor = UIColor.yellow
+                } else {
+                    self.hyoukalabel.text="良い感じ!!!"
+                    self.view.backgroundColor = UIColor.cyan
                 }
+
             }
-            count = count + 1
+            print(self.count)
+            self.count = self.count + 1
         }
         )
         
         
     }
-    
     
     //マップ
     //位置情報取得時の呼び出しメソッド
@@ -235,8 +230,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             testMapView.setRegion(region, animated:true)
         }
     }
-    
-    
     
     //位置情報取得失敗時の呼び出しメソッド
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -254,6 +247,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             let send: GraphViewController = (segue.destination as? GraphViewController)!
             // 値の転送
             send.i = self.yankH
+            //self.count = 0
+            myMotionManager.stopAccelerometerUpdates()
         }
     }
 }

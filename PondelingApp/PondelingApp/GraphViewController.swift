@@ -11,13 +11,13 @@ import UIKit
 
 class GraphViewController: UIViewController {
     
+   
     var i: [Float] = []
-    
+   
     @IBOutlet weak var graphView: GraphView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         graphView.setupPoints(points: i)
     }
 }
